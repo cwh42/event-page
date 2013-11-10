@@ -85,50 +85,6 @@ class ternWP {
 		global $wpdb;
 		return $wpdb->get_var("select ID from $wpdb->posts where post_name='$n'");
 	}
-	function the_content($c,$m=false,$s=0) {
-		global $more;
-		//
-		if(!$m) {
-			$m = __('(more...)');
-		}
-		$o = '';
-		$h = false;
-		//
-		if(preg_match('/<!--more(.*?)?-->/',$c,$r)) {
-			$c = explode($r[0],$c,2);
-			if(!empty($r[1]) && !empty($m)) {
-				$m = strip_tags(wp_kses_no_null(trim($r[1])));
-			}
-			$h = true;
-		}
-		else {
-			$c = array($c);
-		}
-		//
-		if(($more) && ($s) && ($h)) {
-			$teaser = '';
-		}
-		else {
-		 $o .= $c[0];
-		}
-		$o .= $teaser;
-		if(count($c) > 1) {
-			if($more) {
-				$o .= '<span id="more-' . $id . '"></span>' . $c[1];
-			}
-			else {
-				if(!empty($m)) {
-					$o .= apply_filters('the_content_more_link',' <a href="'.get_permalink()."#more-$id\" class=\"more-link\">$m</a>",$m);
-				}
-				$o = force_balance_tags($o);
-			}
-
-		}
-		if($preview) {
-			$o = preg_replace_callback('/\%u([0-9A-F]{4})/',create_function('$r','return "&#" . base_convert($r[1], 16, 10) . ";";'),$o);
-		}
-		return $o;
-	}
 //                                *******************************                                 //
 //________________________________** ERRORS                    **_________________________________//
 //////////////////////////////////**                           **///////////////////////////////////

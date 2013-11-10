@@ -100,7 +100,7 @@ function WP_event_page_paged() {
 	return $v;
 }
 function WP_event_page_markup() {
-	global $tern_wp_event_post,$getWP,$WP_event_page_defaults,$WP_event_page_markup_fields,$post;
+	global $tern_wp_event_post,$getWP,$WP_event_page_defaults,$WP_event_page_markup_fields,$post,$more;
 	if($tern_wp_event_post) {
 		$o = $getWP->getOption('tern_wp_events',$WP_event_page_defaults);
 		$post = get_post($tern_wp_event_post);
@@ -118,6 +118,7 @@ function WP_event_page_markup() {
 			$s = explode('%value%',$s);
 			echo $s[0];
 			//
+			$more = 0;
 			if(function_exists($WP_event_page_markup_fields[$k]['func'])) {
 				if($args) {
 					call_user_func_array($WP_event_page_markup_fields[$k]['func'],$args);
@@ -171,25 +172,25 @@ function WP_event_page_date($i,$d=false,$f=true) {
 	}
 	//
 	if(empty($o['date_markup']) or !empty($d)) {
-		$s .= gmdate($o['format'],$b);
+		$s .= date_i18n($o['format'],$b);
 		//
 		if($o['show_time'] or !$WP_event_page_is_list) {
 			$s .= empty($o['d_2_t_sep']) ? ' ' : $o['d_2_t_sep'];
-			$s .= gmdate($o['time'],$b);
+			$s .= date_i18n($o['time'],$b);
 		}
 		if(!empty($o['timezone'])) { $s .= ' '.$o['timezone']; }
 		//
 		if(($o['end_time'] or !$WP_event_page_is_list) and !$single) {
 			if($getTIME->atStartStamp($b) == $getTIME->atStartStamp($e) and empty($d)) {
 				$s .= empty($o['time_sep']) ? ' - ' : $o['time_sep'];
-				$s .= gmdate($o['time'],$e);
+				$s .= date_i18n($o['time'],$e);
 				if(!empty($o['timezone'])) { $s .= ' '.$o['timezone']; }
 			}
 			elseif(empty($d)) {
 				$s .= empty($o['date_sep']) ? ' -- ' : $o['date_sep'];
-				$s .= gmdate($o['format'],$e);
+				$s .= date_i18n($o['format'],$e);
 				$s .= empty($o['d_2_t_sep']) ? ' ' : $o['d_2_t_sep'];
-				$s .= gmdate($o['time'],$e);
+				$s .= date_i18n($o['time'],$e);
 				if(!empty($o['timezone'])) { $s .= ' '.$o['timezone']; }
 			}
 		}
@@ -227,7 +228,7 @@ function WP_event_page_date($i,$d=false,$f=true) {
 }
 function WP_event_page_date_markup($m) {
 	global $WP_event_page_date;
-	return gmdate($m[1],$WP_event_page_date);
+	return date_i18n($m[1],$WP_event_page_date);
 }
 function tern_wp_event_meta_fields($e=false) {
 	WP_event_page_meta_fields($e);

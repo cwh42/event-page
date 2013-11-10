@@ -101,12 +101,12 @@ $WP_event_page_markup_fields = array(
 	'Post Content'	=>	array(
 		'field'	=>	'post_content',
 		'func'	=>	'the_content',
-		'args'	=>	array('read more...')
+		'args'	=>	array( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) )
 	),
 	'Post Excerpt'	=>	array(
 		'field'	=>	'post_excerpt',
 		'func'	=>	'the_excerpt',
-		'args'	=>	array('read more...')
+		'args'	=>	array( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) )
 	),
 	'Post Author'	=>	array(
 		'field'	=>	'post_author',

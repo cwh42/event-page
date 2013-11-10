@@ -28,7 +28,7 @@ li.tern_wp_event_1 { border:0;padding-top:0; }
 .tern_wp_events h3 a { color:#333;text-decoration:none; }
 .tern_wp_events h3 a:hover { color:#0000ff; }
 .tern_wp_event_date { display:inline-block; }
-.tern_wp_event_date span { font-family:Georgia;font-size:24px; }
+/*.tern_wp_event_date span { font-family:Georgia;font-size:24px; }*/
 .tern_wp_event_post_content, .tern_wp_event_post_excerpt { width:100%;border-top:1px solid #ccc;margin-top:4px;padding-top:12px;font-size:14px; }
 .tern_wp_events p { display:block;margin:8px 0 0 0;text-align:justify; }
 .tern_wp_event_post_excerpt a {  }
